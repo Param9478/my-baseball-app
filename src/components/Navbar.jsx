@@ -28,7 +28,6 @@ const navLinks = [
     children: [
       { label: 'Coaches', to: '/league#coaches' },
       { label: 'Umpires', to: '/league#umpires' },
-      // { label: 'Game Nights', to: '/league#game-nights' },
     ],
   },
   {
@@ -49,6 +48,11 @@ const navLinks = [
       },
     ],
   },
+  { label: 'News', to: '/news' },
+  { label: 'Contact', to: '/contact' },
+
+  // { label: 'Game Nights', to: '/league#game-nights' },
+
   // {
   //   label: 'Development',
   //   to: '/development',
@@ -58,9 +62,7 @@ const navLinks = [
   //     { label: 'Winter Camp', to: '/development#winter-camp' },
   //   ],
   // },
-  // { label: 'News', to: '/news' },
   // { label: 'Sponsors', to: '/sponsors' },
-  { label: 'Contact', to: '/contact' },
 ]
 
 export default function Navbar() {

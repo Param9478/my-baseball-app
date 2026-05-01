@@ -101,7 +101,7 @@ export default function Divisions() {
               href={SOFTBALL_REG}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-pink-600 hover:bg-pink-500 text-white font-display font-semibold text-sm px-6 py-3 uppercase tracking-wider transition-all hover:shadow-lg"
+              className="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-600 border border-primary-500 hover:border-accent-400 text-white font-display font-semibold text-sm px-6 py-3 uppercase tracking-wider transition-all hover:shadow-lg"
             >
               🥎 Register — Softball
             </a>
@@ -156,7 +156,7 @@ export default function Divisions() {
           <div className="flex items-center gap-4 mb-10">
             <span className="text-3xl">🥎</span>
             <div>
-              <div className="font-display text-pink-400 text-xs tracking-[0.2em] uppercase mb-1">Softball</div>
+              <div className="font-display text-accent-400 text-xs tracking-[0.2em] uppercase mb-1">Softball</div>
               <h2 className="font-display font-bold text-3xl text-white tracking-wide">Softball Divisions</h2>
             </div>
           </div>
@@ -165,7 +165,7 @@ export default function Divisions() {
               <div
                 key={div.id}
                 id={div.id}
-                className="bg-primary-900 border border-primary-600 hover:border-pink-500 rounded-xl p-6 card-hover group"
+                className="bg-primary-900 border border-primary-600 hover:border-accent-500 rounded-xl p-6 card-hover group"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="text-3xl">{div.icon}</div>
@@ -173,7 +173,7 @@ export default function Divisions() {
                     {div.ageRange}
                   </span>
                 </div>
-                <h3 className="font-display font-bold text-white text-xl tracking-wide mb-2 group-hover:text-pink-400 transition-colors">
+                <h3 className="font-display font-bold text-white text-xl tracking-wide mb-2 group-hover:text-accent-400 transition-colors">
                   {div.name}
                 </h3>
                 <p className="text-blue-200 text-sm font-body leading-relaxed mb-4">{div.description}</p>
@@ -181,7 +181,7 @@ export default function Divisions() {
                   href={SOFTBALL_REG}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-pink-400 hover:text-pink-300 text-sm font-body font-semibold transition-colors"
+                  className="inline-flex items-center gap-1 text-accent-400 hover:text-accent-300 text-sm font-body font-semibold transition-colors"
                 >
                   Register <ChevronRight size={14} />
                 </a>
@@ -209,7 +209,7 @@ export default function Divisions() {
               href={SOFTBALL_REG}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-pink-600 hover:bg-pink-500 text-white font-display font-semibold text-sm px-8 py-4 uppercase tracking-wider transition-all hover:shadow-lg"
+              className="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-600 border border-primary-500 hover:border-accent-400 text-white font-display font-semibold text-sm px-8 py-4 uppercase tracking-wider transition-all hover:shadow-lg"
             >
               🥎 Register — Softball <ChevronRight size={16} />
             </a>
