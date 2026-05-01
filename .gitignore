@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment variables — kabhi commit mat karo
+.env
+.env.local
+.env.production
+.env.*
