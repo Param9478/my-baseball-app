@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import SectionHeader from '../components/SectionHeader'
-import { Mail, Phone, MapPin, Facebook, Instagram, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, Facebook, Send } from 'lucide-react'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
@@ -41,7 +41,7 @@ export default function Contact() {
             <div>
               <SectionHeader tag="Get In Touch" title="We're Here to Help" />
               <p className="text-blue-200 font-body text-base leading-relaxed mb-10">
-                Whether you have questions about registration, want to volunteer, or just want to learn more about the GPMBA, don't hesitate to reach out.
+                Whether you have questions about registration, want to volunteer, or just want to learn more about the HPMBA, don't hesitate to reach out.
               </p>
 
               <div className="space-y-6">
@@ -52,20 +52,9 @@ export default function Contact() {
                   <div>
                     <h4 className="font-display font-semibold text-white text-sm tracking-wide uppercase mb-1">Address</h4>
                     <p className="text-blue-200 font-body text-sm leading-relaxed">
-                      PO Box 1388<br />High Prairie, AB T8V 4Z2
+                      PO Box 2411<br />
+                      High Prairie, AB T0G 1E0
                     </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-accent-600/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone size={20} className="text-accent-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-display font-semibold text-white text-sm tracking-wide uppercase mb-1">Phone</h4>
-                    <a href="tel:7802961550" className="text-blue-200 hover:text-white font-body text-sm transition-colors">
-                      780.296.1550
-                    </a>
                   </div>
                 </div>
 
@@ -75,31 +64,32 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-display font-semibold text-white text-sm tracking-wide uppercase mb-1">Email</h4>
-                    <a href="mailto:execdirector@gpmba.ca" className="text-blue-200 hover:text-white font-body text-sm transition-colors">
-                      execdirector@gpmba.ca
+                    <a href="mailto:hpminorball@gmail.com" className="text-blue-200 hover:text-white font-body text-sm transition-colors">
+                      hpminorball@gmail.com
                     </a>
                   </div>
                 </div>
               </div>
 
+              {/* Facebook buttons */}
               <div className="mt-10">
                 <h4 className="font-display font-semibold text-white text-sm tracking-widest uppercase mb-4">Follow Us</h4>
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
                   <a
-                    href="https://www.facebook.com/groups/162547079983081/"
+                    href={`https://www.facebook.com/${import.meta.env.VITE_FB_PAGE_ID}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-body text-sm px-4 py-2.5 rounded-lg transition-colors"
                   >
-                    <Facebook size={16} /> Facebook Group
+                    <Facebook size={16} /> Follow Our Page
                   </a>
                   <a
-                    href="https://www.instagram.com/grandeprairieminorbaseball/"
+                    href="https://www.facebook.com/groups/162547079983081/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-body text-sm px-4 py-2.5 rounded-lg transition-all"
+                    className="flex items-center gap-2 bg-primary-700 hover:bg-primary-600 border border-primary-500 text-white font-body text-sm px-4 py-2.5 rounded-lg transition-colors"
                   >
-                    <Instagram size={16} /> Instagram
+                    <Facebook size={16} /> Join Facebook Group
                   </a>
                 </div>
               </div>

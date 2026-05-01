@@ -1,24 +1,27 @@
 import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
+const BASEBALL_REG = 'https://page.spordle.com/high-prairie-district-minor-ball-association/register/1f11531e-1a82-6918-9bab-06d2358bfa0f'
+const SOFTBALL_REG = 'https://www.rampregistrations.com/login?v3=d1c7bce4'
+
 const slides = [
   {
     tag: 'High Prairie Minor Baseball',
     title: '2026 REGULAR SEASON',
     subtitle: 'Join us for the 2026 Baseball season filled with thrilling games, new friendships, and unforgettable memories.',
-    cta: 'Register Now!',
-    ctaHref: 'http://GPball.rampregistrations.com',
+    cta: 'Register — Baseball',
+    ctaHref: BASEBALL_REG,
     bg: 'from-primary-900 via-primary-800 to-primary-700',
     accent: 'bg-blue-600',
   },
   {
-    tag: 'Winter Camp',
-    title: 'DEVELOP YOUR SKILLS THIS OFF-SEASON',
-    subtitle: 'The GPMBA offers off-season skill development camps to help your children grow both on and off the field!',
-    cta: 'View Development',
-    ctaHref: '/development',
-    bg: 'from-primary-900 via-[#1a2e6e] to-primary-800',
-    accent: 'bg-accent-600',
+    tag: '15U & 18U Softball',
+    title: 'SOFTBALL REGISTRATION NOW OPEN',
+    subtitle: 'Our Softball program offers competitive fastpitch for players ages 13–18. Build your skills, find your team, and compete across Alberta.',
+    cta: 'Register — Softball',
+    ctaHref: SOFTBALL_REG,
+    bg: 'from-primary-900 via-[#4a1a6e] to-primary-800',
+    accent: 'bg-pink-600',
   },
   {
     tag: 'Our Community',
@@ -50,9 +53,8 @@ export default function HeroSlider() {
       {slides.map((slide, i) => (
         <div
           key={i}
-          className={`absolute inset-0 bg-gradient-to-br ${slide.bg} transition-opacity duration-1000 ${
-            i === current ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 bg-gradient-to-br ${slide.bg} transition-opacity duration-1000 ${i === current ? 'opacity-100' : 'opacity-0'
+            }`}
         />
       ))}
 
@@ -71,7 +73,8 @@ export default function HeroSlider() {
       />
 
       {/* Diagonal accent stripe */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-accent-600/10 clip-slant" 
+      <div
+        className="absolute top-0 right-0 w-1/3 h-full bg-accent-600/10"
         style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 0% 100%)' }}
       />
 
@@ -80,18 +83,17 @@ export default function HeroSlider() {
         {slides.map((slide, i) => (
           <div
             key={i}
-            className={`transition-all duration-700 ${
-              i === current
+            className={`transition-all duration-700 ${i === current
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-8 absolute'
-            }`}
+              }`}
           >
             {i === current && (
               <div className="max-w-3xl">
                 <div className={`inline-block ${slide.accent} text-white font-display text-xs tracking-[0.2em] px-4 py-2 mb-6 uppercase`}>
                   {slide.tag}
                 </div>
-                <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-none mb-6 text-shadow tracking-wide">
+                <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-none mb-6 tracking-wide">
                   {slide.title}
                 </h1>
                 <p className="font-body text-blue-100 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl">
@@ -140,9 +142,8 @@ export default function HeroSlider() {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`h-1 rounded-full transition-all duration-300 ${
-              i === current ? 'w-8 bg-accent-400' : 'w-3 bg-white/30'
-            }`}
+            className={`h-1 rounded-full transition-all duration-300 ${i === current ? 'w-8 bg-accent-400' : 'w-3 bg-white/30'
+              }`}
           />
         ))}
       </div>
@@ -161,7 +162,10 @@ export default function HeroSlider() {
       </button>
 
       {/* Bottom diagonal cut */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-primary-900" style={{ clipPath: 'polygon(0 60%, 100% 0, 100% 100%, 0 100%)' }} />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-20 bg-primary-900"
+        style={{ clipPath: 'polygon(0 60%, 100% 0, 100% 100%, 0 100%)' }}
+      />
     </section>
   )
 }

@@ -36,12 +36,14 @@ export default function League() {
                 </div>
                 <span className="font-display text-accent-400 text-xs tracking-[0.25em] uppercase">Volunteer</span>
               </div>
-              <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-wide mb-4">Coaching Applications</h2>
+              <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-wide mb-4">
+                Coaching Applications
+              </h2>
               <p className="text-blue-200 font-body text-base leading-relaxed mb-4">
-                Do you have a passion for baseball and working with youth? We are always looking for dedicated coaches to lead our teams. Whether you're a former player or just love the game, we have a spot for you.
+                Coaches are always needed at every division! Whether you are a former player or simply passionate about the game, your leadership can make a huge difference in our youth programs.
               </p>
               <p className="text-blue-200 font-body text-base leading-relaxed mb-6">
-                Coaches play a critical role in player development, safety, and the overall experience of every child on the team. Our coaches are supported with training, resources, and a strong community network.
+                If you have any interest and would like more information, please send us an email. We provide all the necessary support and resources to help you succeed on the field.
               </p>
               <a
                 href="mailto:execdirector@gpmba.ca"
@@ -99,12 +101,14 @@ export default function League() {
                 </div>
                 <span className="font-display text-blue-400 text-xs tracking-[0.25em] uppercase">Officiate</span>
               </div>
-              <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-wide mb-4">Umpire Clinics</h2>
+              <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-wide mb-4">
+                Umpire Clinics
+              </h2>
               <p className="text-blue-200 font-body text-base leading-relaxed mb-4">
-                Become a certified umpire with the GPMBA. We offer clinics for new and experienced umpires to develop their skills and knowledge of the game.
+                Umpires are essential to the game—simply put, without umpires, we cannot play! This is a vital role that ensures fair play and sportsmanship for all our athletes.
               </p>
               <p className="text-blue-200 font-body text-base leading-relaxed mb-6">
-                Umpires are essential to the game and are compensated for their time. This is a great opportunity for older youth and adults to give back to the baseball community.
+                We are looking for dedicated older youth and adults to join our officiating team. All umpires are compensated for their time, and we provide clinics to help you get certified and confident on the field.
               </p>
               <a
                 href="mailto:execdirector@gpmba.ca"

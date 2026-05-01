@@ -1,5 +1,5 @@
 import SectionHeader from '../components/SectionHeader'
-import { Users, Shield, Star, Heart, ChevronRight } from 'lucide-react'
+import { Users, Shield, Star, Heart, ChevronRight, Target, Eye } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 export default function AboutUs() {
@@ -21,7 +21,70 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Mission */}
+      {/* Mission & Vision */}
+      <section className="py-24 bg-primary-800 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5"
+          style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, #dc2626 0%, transparent 50%), radial-gradient(circle at 80% 50%, #1d4ed8 0%, transparent 50%)' }}
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-3 mb-3">
+              <div className="h-0.5 w-10 bg-accent-500" />
+              <span className="font-display text-accent-400 text-xs tracking-[0.25em] uppercase font-medium">Who We Are</span>
+              <div className="h-0.5 w-10 bg-accent-500" />
+            </div>
+            <h2 className="font-display font-bold text-4xl text-white tracking-wide">Our Mission & Vision</h2>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Mission */}
+            <div className="bg-primary-900 border border-primary-600 hover:border-accent-500 rounded-2xl p-10 transition-all group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 bg-accent-600/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Target size={26} className="text-accent-400" />
+                </div>
+                <div>
+                  <span className="font-display text-accent-400 text-xs tracking-[0.2em] uppercase block mb-1">HPMBA Mission Statement</span>
+                  <h3 className="font-display font-bold text-white text-2xl tracking-wide">Our Mission</h3>
+                </div>
+              </div>
+              <p className="text-white font-display font-semibold text-lg leading-snug mb-5">
+                Our goal is to keep our Youth healthy and active.
+              </p>
+              <p className="text-blue-200 font-body text-base leading-relaxed mb-4">
+                High Prairie Minor Baseball's mission is to instill in the youth of High Prairie and surrounding areas, through the organized sport of baseball, the ideals of honesty, loyalty, courage, and sportsmanship.
+              </p>
+              <p className="text-blue-200 font-body text-base leading-relaxed">
+                To provide a safe, healthy environment that promotes physical exercise, teamwork, respect for coaches and players, sound baseball fundamentals, self-esteem, self-confidence, self-discipline, and fair play — while having fun.
+              </p>
+            </div>
+
+            {/* Vision */}
+            <div className="bg-primary-900 border border-primary-600 hover:border-accent-500 rounded-2xl p-10 transition-all group">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 bg-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Eye size={26} className="text-blue-400" />
+                </div>
+                <div>
+                  <span className="font-display text-blue-400 text-xs tracking-[0.2em] uppercase block mb-1">HPMBA Vision Statement</span>
+                  <h3 className="font-display font-bold text-white text-2xl tracking-wide">Our Vision</h3>
+                </div>
+              </div>
+              <p className="text-white font-display font-semibold text-lg leading-snug mb-5">
+                A community where every child has the opportunity to play.
+              </p>
+              <p className="text-blue-200 font-body text-base leading-relaxed mb-4">
+                We envision High Prairie Minor Baseball as the heart of our community — a place where young athletes of all backgrounds and skill levels come together, grow as individuals, and develop a lifelong love of the game.
+              </p>
+              <p className="text-blue-200 font-body text-base leading-relaxed">
+                We also promote the sport of baseball in all its forms, including the training and encouragement of competitive ballplayers who represent our community with pride.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who We Are */}
       <section className="py-24 bg-primary-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -71,7 +134,7 @@ export default function AboutUs() {
             {[
               { name: 'Baseball Canada', desc: 'National governing body for baseball in Canada.', href: 'https://www.baseball.ca/' },
               { name: 'Baseball Alberta', desc: 'Provincial organization overseeing Alberta amateur baseball.', href: 'http://baseballalberta.com/' },
-              { name: 'Financial Assistance', desc: 'KidSport and JumpStart programs available for families in need.', href: '/contact' },
+              { name: 'Financial Assistance', desc: 'KidSport and JumpStart programs available for families in need.', href: '/resources#financial-assistance' },
             ].map((res) => (
               <a
                 key={res.name}
