@@ -22,6 +22,7 @@ export default function NewsCard({ title, date, excerpt, href = '/news', image }
         )}
         <a
           href={href}
+          target="_blank"
           className="inline-flex items-center gap-1 text-accent-400 hover:text-accent-300 text-sm font-body font-semibold transition-colors"
         >
           Read More <ArrowRight size={14} />

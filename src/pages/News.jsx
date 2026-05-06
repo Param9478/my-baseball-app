@@ -3,7 +3,9 @@ import SectionHeader from '../components/SectionHeader'
 import NewsCard from '../components/NewsCard'
 import { ExternalLink, RefreshCw, AlertCircle } from 'lucide-react'
 
-// Fallback news — jedo FB API kaam na kare
+const FB_PAGE_ID = '1094783807050470'
+const FB_PAGE_URL = `https://www.facebook.com/${FB_PAGE_ID}`
+
 const fallbackNews = [
   {
     title: '13U / 11U Try Outs – Registered Athletes Only!',
@@ -43,27 +45,23 @@ const fallbackNews = [
   },
 ]
 
-// Facebook date format karo readable
 function formatFBDate(dateString) {
-  const date = new Date(dateString)
-  return date.toLocaleDateString('en-CA', {
+  return new Date(dateString).toLocaleDateString('en-CA', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   })
 }
 
-// FB post nu NewsCard format ch convert karo
 function fbPostToNewsItem(post) {
   const message = post.message || post.story || 'View post on Facebook'
   const title = message.length > 80 ? message.substring(0, 80) + '...' : message
-  const excerpt = message.length > 80 ? message.substring(0, 200) + '...' : message
-
+  const excerpt = message.length > 200 ? message.substring(0, 200) + '...' : message
   return {
     title,
     date: formatFBDate(post.created_time),
     excerpt,
-    href: `https://www.facebook.com/${import.meta.env.VITE_FB_PAGE_ID}/posts/${post.id.split('_')[1]}`,
+    href: `${FB_PAGE_URL}/posts/${post.id.split('_')[1]}`,
     external: true,
     image: post.full_picture || null,
   }
@@ -80,15 +78,12 @@ export default function News() {
     setError(false)
 
     try {
-      const PAGE_ID = import.meta.env.VITE_FB_PAGE_ID
       const TOKEN = import.meta.env.VITE_FB_ACCESS_TOKEN
 
-      if (!PAGE_ID || !TOKEN) {
-        throw new Error('Missing env variables')
-      }
+      if (!TOKEN) throw new Error('Missing token')
 
       const res = await fetch(
-        `https://graph.facebook.com/v19.0/${PAGE_ID}/posts?fields=id,message,story,created_time,full_picture&limit=9&access_token=${TOKEN}`
+        `https://graph.facebook.com/v19.0/${FB_PAGE_ID}/posts?fields=id,message,story,created_time,full_picture&limit=9&access_token=${TOKEN}`
       )
 
       if (!res.ok) throw new Error('API error')
@@ -101,7 +96,6 @@ export default function News() {
         setPosts(data.data.map(fbPostToNewsItem))
         setUsingFallback(false)
       } else {
-        // FB page te posts nahi hain abhi — fallback use karo
         setPosts(fallbackNews)
         setUsingFallback(true)
       }
@@ -140,7 +134,7 @@ export default function News() {
         </div>
       </section>
 
-      {/* Status Banner — FB connected dikhao */}
+      {/* Live Banner */}
       {!usingFallback && !loading && (
         <div className="bg-primary-800 border-b border-primary-600">
           <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-3">
@@ -149,7 +143,7 @@ export default function News() {
               <p className="text-blue-200 font-body text-sm">Live updates from Facebook</p>
             </div>
             <a
-              href={`https://www.facebook.com/${import.meta.env.VITE_FB_PAGE_ID}`}
+              href={FB_PAGE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-accent-400 hover:text-accent-300 font-display font-semibold text-xs transition-colors"
@@ -172,7 +166,7 @@ export default function News() {
             </div>
           )}
 
-          {/* Error notice */}
+          {/* Error */}
           {!loading && error && (
             <div className="flex items-center gap-3 bg-primary-800 border border-primary-600 rounded-xl px-5 py-4 mb-8 max-w-xl">
               <AlertCircle size={18} className="text-yellow-400 flex-shrink-0" />
@@ -207,7 +201,7 @@ export default function News() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href={`https://www.facebook.com/${import.meta.env.VITE_FB_PAGE_ID}`}
+                href={FB_PAGE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all hover:shadow-lg"
