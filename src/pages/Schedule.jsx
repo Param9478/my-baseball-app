@@ -1,250 +1,231 @@
-import { Calendar, MapPin, Clock, ChevronRight, ExternalLink } from 'lucide-react'
+import { ExternalLink, ChevronRight, MapPin, Trophy, Facebook } from 'lucide-react'
 
-// Update karo eh real Spordle data naal
-const seasons = [
+const SPORDLE_URL = 'https://page.spordle.com/high-prairie-district-minor-ball-association/schedule-stats-standings'
+const FB_PAGE_URL = 'https://www.facebook.com/1094783807050470'
+const FB_GROUP_URL = 'https://www.facebook.com/groups/162547079983081/'
+
+const rounds = [
     {
-        id: 'spring',
-        label: 'Spring Season',
-        icon: '⚾',
-        games: [
-            { date: 'May 3, 2026', day: 'Sat', time: '10:00 AM', home: 'HP Rally Caps', away: 'Slave Lake', field: 'Field 1', division: 'Rally Caps' },
-            { date: 'May 3, 2026', day: 'Sat', time: '12:00 PM', home: 'HP Rookie', away: 'Peace River', field: 'Field 2', division: 'Rookie' },
-            { date: 'May 10, 2026', day: 'Sun', time: '10:00 AM', home: 'HP 11U', away: 'Grande Prairie', field: 'Field 1', division: '11U' },
-            { date: 'May 10, 2026', day: 'Sun', time: '1:00 PM', home: 'HP 13U', away: 'Valleyview', field: 'Field 2', division: '13U' },
-            { date: 'May 17, 2026', day: 'Sun', time: '11:00 AM', home: 'HP 15U', away: 'Fairview', field: 'Field 1', division: '15U' },
-            { date: 'May 24, 2026', day: 'Sun', time: '10:00 AM', home: 'HP 18U', away: 'Peace River', field: 'Field 1', division: '18U' },
+        id: 'round-1',
+        dates: 'May 22–24',
+        label: 'Round 1',
+        emoji: '⚾',
+        accentText: 'text-accent-400',
+        accentBorder: 'border-accent-500/40',
+        accentBg: 'bg-accent-500/10',
+        venues: [
+            {
+                location: 'Peace River',
+                headerBg: 'bg-red-700',
+                teams: ['Peace River', 'Dawson Creek', 'Rycroft', 'Chetwynd', 'Valleyview'],
+            },
+            {
+                location: 'Fort St. John',
+                headerBg: 'bg-slate-800',
+                teams: ['Fort St. John', 'Grande Prairie', 'High Prairie', 'Beaverlodge', 'Manning'],
+            },
         ],
     },
     {
-        id: 'summer',
-        label: 'Summer Season',
-        icon: '🌞',
-        games: [
-            { date: 'Jun 7, 2026', day: 'Sun', time: '10:00 AM', home: 'HP 11U', away: 'Slave Lake', field: 'Field 1', division: '11U' },
-            { date: 'Jun 7, 2026', day: 'Sun', time: '12:30 PM', home: 'HP 13U', away: 'Grande Prairie', field: 'Field 2', division: '13U' },
-            { date: 'Jun 14, 2026', day: 'Sun', time: '10:00 AM', home: 'HP 15U Softball', away: 'Peace River', field: 'Field 2', division: '15U Softball' },
-            { date: 'Jun 21, 2026', day: 'Sun', time: '11:00 AM', home: 'HP 18U', away: 'Valleyview', field: 'Field 1', division: '18U' },
-            { date: 'Jun 28, 2026', day: 'Sun', time: '10:00 AM', home: 'HP 18U Softball', away: 'Fairview', field: 'Field 2', division: '18U Softball' },
+        id: 'round-2',
+        dates: 'June 5–7',
+        label: 'Round 2',
+        emoji: '🏟️',
+        accentText: 'text-blue-400',
+        accentBorder: 'border-blue-500/40',
+        accentBg: 'bg-blue-500/10',
+        venues: [
+            {
+                location: 'Manning',
+                headerBg: 'bg-blue-700',
+                teams: ['Manning', 'Grande Prairie', 'High Prairie', 'Rycroft', 'Peace River', 'Valleyview'],
+            },
+            {
+                location: 'Beaverlodge',
+                headerBg: 'bg-indigo-700',
+                teams: ['Beaverlodge', 'Fort St. John', 'Dawson Creek', 'Chetwynd'],
+            },
+        ],
+    },
+    {
+        id: 'round-3',
+        dates: 'June 12–14',
+        label: 'Round 3',
+        emoji: '🔥',
+        accentText: 'text-green-400',
+        accentBorder: 'border-green-500/40',
+        accentBg: 'bg-green-500/10',
+        venues: [
+            {
+                location: 'Dawson Creek',
+                headerBg: 'bg-green-700',
+                teams: ['Dawson Creek', 'Manning', 'High Prairie', 'Grande Prairie', 'Chetwynd'],
+            },
+            {
+                location: 'Peace River',
+                headerBg: 'bg-red-700',
+                teams: ['Peace River', 'Fort St. John', 'Rycroft', 'Beaverlodge', 'Valleyview'],
+            },
         ],
     },
 ]
 
-const divisionColors = {
-    'Rally Caps': 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
-    'Rookie': 'bg-green-500/20 text-green-300 border-green-500/30',
-    '11U': 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-    '13U': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
-    '15U': 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-    '18U': 'bg-red-500/20 text-red-300 border-red-500/30',
-    '15U Softball': 'bg-pink-500/20 text-pink-300 border-pink-500/30',
-    '18U Softball': 'bg-rose-500/20 text-rose-300 border-rose-500/30',
+const finals = {
+    id: 'finals',
+    dates: 'June 19–21',
+    venues: [
+        { location: 'Fort St. John', headerBg: 'bg-slate-800' },
+        { location: 'Chetwynd', headerBg: 'bg-orange-600' },
+    ],
 }
-
-const SPORDLE_URL = 'https://page.spordle.com/high-prairie-district-minor-ball-association/schedule-stats-standings'
 
 export default function Schedule() {
     return (
         <div className="pt-28">
             {/* Hero */}
             <section className="py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 relative overflow-hidden">
-                <div
-                    className="absolute right-0 top-0 bottom-0 w-1/3 bg-accent-600/10"
-                    style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 0% 100%)' }}
-                />
+                <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-accent-600/10"
+                    style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 0% 100%)' }} />
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <div className="inline-block bg-accent-600 text-white font-display text-xs tracking-[0.2em] px-4 py-2 mb-4 uppercase">
-                        2026 Season
+                        Montney League · 2026
                     </div>
                     <h1 className="font-display font-bold text-5xl sm:text-6xl text-white tracking-wide mb-4">
                         Game Schedule
                     </h1>
                     <p className="text-blue-200 font-body text-lg max-w-2xl mb-8">
-                        Full schedule for all HPMBA divisions. Home games played at High Prairie ball diamonds. Check back regularly for updates.
+                        High Prairie competes in 3 rounds of Montney League tournament play, leading to the Championship Finals in June.
                     </p>
-                    <a
-                        href={SPORDLE_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-display font-semibold text-sm px-6 py-3 uppercase tracking-wider transition-all backdrop-blur-sm rounded"
-                    >
-                        <ExternalLink size={15} />
-                        View Live Schedule on Spordle
+                    <a href={SPORDLE_URL} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-display font-semibold text-sm px-6 py-3 uppercase tracking-wider transition-all backdrop-blur-sm rounded">
+                        <ExternalLink size={15} /> Live Scores & Standings on Spordle
                     </a>
                 </div>
             </section>
 
-            {/* Live Banner */}
-            <section className="bg-primary-800 border-b border-primary-600">
-                <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                        <p className="text-blue-200 font-body text-sm">
-                            Live scores, standings & stats available on Spordle
-                        </p>
-                    </div>
-                    <a
-                        href={SPORDLE_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-accent-400 hover:text-accent-300 font-display font-semibold text-sm transition-colors whitespace-nowrap"
-                    >
-                        Open Spordle <ExternalLink size={13} />
-                    </a>
-                </div>
-            </section>
-
-            {/* Division Legend */}
-            <section className="py-6 bg-primary-800 border-b border-primary-700">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="flex flex-wrap gap-2 items-center">
-                        <span className="text-blue-300 font-display text-xs uppercase tracking-widest mr-2">Divisions:</span>
-                        {Object.entries(divisionColors).map(([div, color]) => (
-                            <span key={div} className={`text-xs font-display font-semibold px-3 py-1 rounded-full border ${color}`}>
-                                {div}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Schedule */}
+            {/* Rounds */}
             <section className="py-24 bg-primary-900">
-                <div className="max-w-7xl mx-auto px-6 space-y-20">
-                    {seasons.map((season) => (
-                        <div key={season.id} id={season.id}>
-                            {/* Season Header */}
-                            <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
-                                <div className="flex items-center gap-4">
-                                    <span className="text-4xl">{season.icon}</span>
-                                    <div>
-                                        <h2 className="font-display font-bold text-3xl text-white tracking-wide">{season.label}</h2>
-                                        <p className="text-blue-300 font-body text-sm">{season.games.length} games scheduled</p>
+                <div className="max-w-5xl mx-auto px-6">
+
+                    {/* Timeline line */}
+                    <div className="relative">
+                        <div className="hidden lg:block absolute left-[22px] top-8 bottom-8 w-px bg-primary-700" />
+
+                        <div className="space-y-16">
+                            {rounds.map((round) => (
+                                <div key={round.id} id={round.id} className="relative">
+
+                                    {/* Round label + date */}
+                                    <div className="flex items-center gap-4 mb-6">
+                                        {/* Timeline dot */}
+                                        <div className={`hidden lg:flex w-11 h-11 rounded-full border-2 ${round.accentBorder} ${round.accentBg} items-center justify-center flex-shrink-0 text-lg z-10 bg-primary-900`}>
+                                            {round.emoji}
+                                        </div>
+                                        <div className="flex flex-wrap items-center gap-3 lg:ml-2">
+                                            <span className={`font-display font-bold text-xs tracking-[0.2em] uppercase px-3 py-1 rounded-full border ${round.accentBorder} ${round.accentBg} ${round.accentText}`}>
+                                                {round.label}
+                                            </span>
+                                            <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-wide">
+                                                {round.dates}
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    {/* Venues grid */}
+                                    <div className="lg:ml-16 grid sm:grid-cols-2 gap-5">
+                                        {round.venues.map((venue) => (
+                                            <div key={venue.location} className="bg-primary-800 border border-primary-600 rounded-2xl overflow-hidden hover:border-primary-500 transition-colors">
+                                                {/* Header */}
+                                                <div className={`${venue.headerBg} px-5 py-4 flex items-center gap-2`}>
+                                                    <MapPin size={14} className="text-white/70" />
+                                                    <div>
+                                                        <div className="text-white/60 text-xs font-display uppercase tracking-widest">Location</div>
+                                                        <div className="text-white font-display font-bold text-lg tracking-wide">{venue.location}</div>
+                                                    </div>
+                                                </div>
+                                                {/* Teams */}
+                                                <div className="px-5 py-4">
+                                                    <div className="text-blue-400 font-display text-xs uppercase tracking-widest mb-3">Teams</div>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {venue.teams.map((team) => (
+                                                            <span key={team}
+                                                                className={`text-xs font-body px-3 py-1.5 rounded-lg border transition-colors ${team === 'High Prairie'
+                                                                        ? 'bg-accent-600/20 border-accent-500/60 text-accent-300 font-semibold'
+                                                                        : 'bg-primary-700/60 border-primary-600 text-blue-200'
+                                                                    }`}>
+                                                                {team === 'High Prairie' ? '⚾ ' + team : team}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
-                                <a
-                                    href={SPORDLE_URL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 bg-primary-800 hover:bg-primary-700 border border-primary-600 hover:border-accent-500 text-blue-200 hover:text-white font-display font-semibold text-xs px-4 py-2 uppercase tracking-wider transition-all rounded"
-                                >
-                                    <ExternalLink size={12} />
-                                    Live Scores
-                                </a>
-                            </div>
+                            ))}
 
-                            {/* Desktop Table */}
-                            <div className="hidden md:block bg-primary-800 border border-primary-600 rounded-2xl overflow-hidden">
-                                <table className="w-full">
-                                    <thead>
-                                        <tr className="border-b border-primary-600 bg-primary-700">
-                                            <th className="text-left px-6 py-4 font-display text-xs text-blue-300 uppercase tracking-widest">Date</th>
-                                            <th className="text-left px-6 py-4 font-display text-xs text-blue-300 uppercase tracking-widest">Time</th>
-                                            <th className="text-left px-6 py-4 font-display text-xs text-blue-300 uppercase tracking-widest">Home</th>
-                                            <th className="text-left px-6 py-4 font-display text-xs text-blue-300 uppercase tracking-widest">Away</th>
-                                            <th className="text-left px-6 py-4 font-display text-xs text-blue-300 uppercase tracking-widest">Field</th>
-                                            <th className="text-left px-6 py-4 font-display text-xs text-blue-300 uppercase tracking-widest">Division</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {season.games.map((game, i) => (
-                                            <tr key={i} className="border-b border-primary-700 last:border-0 hover:bg-primary-700/50 transition-colors">
-                                                <td className="px-6 py-4">
-                                                    <div className="font-display font-semibold text-white text-sm">{game.day}</div>
-                                                    <div className="text-blue-300 text-xs font-body">{game.date}</div>
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    <div className="flex items-center gap-1.5 text-blue-200 text-sm font-body">
-                                                        <Clock size={13} className="text-accent-400" />
-                                                        {game.time}
-                                                    </div>
-                                                </td>
-                                                <td className="px-6 py-4 font-body text-white text-sm font-semibold">{game.home}</td>
-                                                <td className="px-6 py-4 font-body text-blue-200 text-sm">vs {game.away}</td>
-                                                <td className="px-6 py-4">
-                                                    <div className="flex items-center gap-1.5 text-blue-200 text-sm font-body">
-                                                        <MapPin size={13} className="text-accent-400" />
-                                                        {game.field}
-                                                    </div>
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    <span className={`text-xs font-display font-semibold px-2.5 py-1 rounded-full border ${divisionColors[game.division] || 'bg-primary-600 text-blue-200 border-primary-500'}`}>
-                                                        {game.division}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
+                            {/* Finals */}
+                            <div id={finals.id} className="relative">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className="hidden lg:flex w-11 h-11 rounded-full border-2 border-yellow-500/60 bg-yellow-500/10 items-center justify-center flex-shrink-0 text-lg z-10 bg-primary-900">
+                                        🏆
+                                    </div>
+                                    <div className="flex flex-wrap items-center gap-3 lg:ml-2">
+                                        <span className="font-display font-bold text-xs tracking-[0.2em] uppercase px-3 py-1 rounded-full border border-yellow-500/40 bg-yellow-500/10 text-yellow-400">
+                                            Championship
+                                        </span>
+                                        <h2 className="font-display font-bold text-3xl sm:text-4xl text-yellow-400 tracking-wide">
+                                            {finals.dates} — Finals
+                                        </h2>
+                                    </div>
+                                </div>
 
-                            {/* Mobile Cards */}
-                            <div className="md:hidden space-y-4">
-                                {season.games.map((game, i) => (
-                                    <div key={i} className="bg-primary-800 border border-primary-600 rounded-xl p-5">
-                                        <div className="flex items-start justify-between mb-3">
-                                            <span className={`text-xs font-display font-semibold px-2.5 py-1 rounded-full border ${divisionColors[game.division] || 'bg-primary-600 text-blue-200 border-primary-500'}`}>
-                                                {game.division}
-                                            </span>
-                                            <div className="text-right">
-                                                <div className="font-display font-semibold text-white text-sm">{game.day}</div>
-                                                <div className="text-blue-300 text-xs font-body">{game.date}</div>
-                                            </div>
-                                        </div>
-                                        <div className="mb-3">
-                                            <div className="font-display font-bold text-white text-base">{game.home}</div>
-                                            <div className="text-blue-300 font-body text-sm">vs {game.away}</div>
-                                        </div>
-                                        <div className="flex items-center gap-4">
-                                            <div className="flex items-center gap-1.5 text-blue-200 text-xs font-body">
-                                                <Clock size={12} className="text-accent-400" />
-                                                {game.time}
-                                            </div>
-                                            <div className="flex items-center gap-1.5 text-blue-200 text-xs font-body">
-                                                <MapPin size={12} className="text-accent-400" />
-                                                {game.field}
+                                {/* Finals card */}
+                                <div className="lg:ml-16 bg-gradient-to-br from-yellow-500/10 to-orange-500/5 border border-yellow-500/30 rounded-2xl overflow-hidden">
+                                    <div className="px-6 py-5 border-b border-yellow-500/20">
+                                        <div className="flex items-center gap-3">
+                                            <Trophy size={22} className="text-yellow-400" />
+                                            <div>
+                                                <div className="font-display font-bold text-white text-xl tracking-wide">Championship Finals</div>
+                                                <div className="text-yellow-300/70 font-body text-sm">Top teams from each division advance</div>
                                             </div>
                                         </div>
                                     </div>
-                                ))}
+                                    <div className="grid sm:grid-cols-2 gap-4 p-5">
+                                        {finals.venues.map((venue) => (
+                                            <div key={venue.location} className={`${venue.headerBg} rounded-xl px-5 py-4 text-center`}>
+                                                <div className="text-white/60 font-display text-xs uppercase tracking-widest mb-1">Location</div>
+                                                <div className="text-white font-display font-bold text-xl tracking-wide">{venue.location}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    ))}
+                    </div>
                 </div>
             </section>
 
             {/* Bottom CTA */}
             <section className="py-16 bg-primary-800 border-t border-primary-700">
                 <div className="max-w-3xl mx-auto px-6 text-center">
-                    <Calendar size={36} className="text-accent-400 mx-auto mb-4" />
-                    <h2 className="font-display font-bold text-2xl text-white mb-3">Want Live Scores & Standings?</h2>
+                    <Trophy size={36} className="text-accent-400 mx-auto mb-4" />
+                    <h2 className="font-display font-bold text-2xl text-white mb-3">Live Scores & Standings</h2>
                     <p className="text-blue-200 font-body text-base mb-6">
-                        Full live scores, stats, and standings are available on our Spordle page. Schedule subject to change — follow our Facebook group for rainout notifications.
+                        Follow along on Spordle for live updates. Join our Facebook community for rainout notifications and announcements.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
-                        <a
-                            href={SPORDLE_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-accent-600 hover:bg-accent-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all hover:shadow-lg"
-                        >
-                            <ExternalLink size={15} />
-                            View on Spordle
+                        <a href={SPORDLE_URL} target="_blank" rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-accent-600 hover:bg-accent-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all hover:shadow-lg">
+                            <ExternalLink size={15} /> View on Spordle
                         </a>
-                        <a
-                            href={`https://www.facebook.com/${import.meta.env.VITE_FB_PAGE_ID}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all"
-                        >
-                            Follow Our Page <ChevronRight size={15} />
+                        <a href={FB_PAGE_URL} target="_blank" rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all">
+                            <Facebook size={15} /> Follow Our Page
                         </a>
-                        <a
-                            href="https://www.facebook.com/groups/162547079983081/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-600 border border-primary-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all"
-                        >
-                            Join Facebook Group <ChevronRight size={15} />
+                        <a href={FB_GROUP_URL} target="_blank" rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-600 border border-primary-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all">
+                            <Facebook size={15} /> Facebook Group
                         </a>
                     </div>
                 </div>
