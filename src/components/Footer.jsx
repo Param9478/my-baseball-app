@@ -45,7 +45,9 @@ export default function Footer() {
         {/* Brand */}
         <div className="lg:col-span-2">
           <div className="flex items-center gap-3 mb-5">
-            <img src="/logo.png" alt="HPMBA Logo" className="h-14 w-auto object-contain" />
+            {/* <img src="/logo.png" alt="HPMBA Logo" className="h-14 w-auto object-contain" /> */}
+            <img src="/logo.png" alt="Logo" className="h-10 w-10 sm:h-15 sm:w-15 object-contain rounded-full bg-white" />
+
             <div>
               <div className="font-display text-white font-bold text-base leading-tight tracking-wide">
                 HIGH PRAIRIE & DISTRICT
