@@ -1,5 +1,4 @@
 exports.handler = async () => {
-    const PAGE_ID = process.env.FB_PAGE_ID
     const TOKEN = process.env.FB_ACCESS_TOKEN
 
     try {
