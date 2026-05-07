@@ -125,7 +125,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <img src="/logo.png" alt="Logo" className="h-12 w-auto object-contain" />
+            <img src="/logo.png" alt="Logo" className="h-10 w-10 sm:h-15 sm:w-15 object-contain rounded-full bg-white p-1 sm:mb-0 mb-2" />
             <div className="hidden sm:block text-white">
               <div className="font-display font-bold text-sm tracking-wide">HIGH PRAIRIE & DISTRICT</div>
               <div className="font-display text-accent-400 text-xs tracking-widest font-medium uppercase">Minor Ball Association</div>
