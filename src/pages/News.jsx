@@ -78,13 +78,10 @@ export default function News() {
     setError(false)
 
     try {
-      const TOKEN = import.meta.env.VITE_FB_ACCESS_TOKEN
 
-      if (!TOKEN) throw new Error('Missing token')
 
-      const res = await fetch(
-        `https://graph.facebook.com/v19.0/${FB_PAGE_ID}/posts?fields=id,message,story,created_time,full_picture&limit=9&access_token=${TOKEN}`
-      )
+      const res = await fetch('/.netlify/functions/fb-posts')
+
 
       if (!res.ok) throw new Error('API error')
 
