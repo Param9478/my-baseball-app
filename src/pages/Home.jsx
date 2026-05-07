@@ -5,11 +5,11 @@ import HeroSlider from '../components/HeroSlider'
 import SectionHeader from '../components/SectionHeader'
 import NewsCard from '../components/NewsCard'
 
-// Registration Links
 const BASEBALL_REG = 'https://page.spordle.com/high-prairie-district-minor-ball-association/register/1f11531e-1a82-6918-9bab-06d2358bfa0f'
 const SOFTBALL_REG = 'https://www.rampregistrations.com/login?v3=d1c7bce4'
+const FB_PAGE_ID = '1094783807050470'
+const FB_PAGE_URL = `https://www.facebook.com/${FB_PAGE_ID}`
 
-// Fallback news
 const fallbackNews = [
   {
     title: '13U / 11U Try Outs – Registered Athletes Only!',
@@ -35,12 +35,12 @@ const fallbackNews = [
 ]
 
 const divisions = [
-  { id: 'rally-caps', name: 'Rally Caps', ageRange: 'Ages 5–6', description: 'Rally Caps focuses on introducing the core skills of batting, fielding, and teamwork. Games are structured for fun and learning at this foundational stage.', icon: '🧢' },
-  { id: 'rookie', name: 'Rookie', ageRange: 'Ages 7–8', description: 'Rookie players begin to develop real baseball skills in a structured environment. Focus is on learning positions, base running, and the rules of the game.', icon: '🌟' },
+  { id: 'rally-caps', name: 'Rally Caps', ageRange: 'Ages 5–6', description: 'Rally Caps focuses on introducing the core skills of batting, fielding, and teamwork. Games are structured for fun and learning at this foundational stage.', icon: '⚾' },
+  { id: 'rookie', name: 'Rookie', ageRange: 'Ages 7–8', description: 'Rookie players begin to develop real baseball skills in a structured environment. Focus is on learning positions, base running, and the rules of the game.', icon: '⚾' },
   { id: '11u', name: '11U A Baseball', ageRange: 'Ages 9–11', description: 'Players in the 11U division compete in organized games with full rules. Emphasis on skill development, sportsmanship, and competitive play.', icon: '⚾' },
-  { id: '13u', name: '13U A Baseball', ageRange: 'Ages 11–13', description: 'Players develop strategic thinking and higher-level baseball skills as they prepare for senior play.', icon: '🔥' },
-  { id: '15u', name: '15U A Baseball', ageRange: 'Ages 13–15', description: 'Focused on advanced skill development and tactical gameplay on a full-size diamond, preparing players for high-school level baseball competition.', icon: '🏆' },
-  { id: '18u', name: '18U A Baseball', ageRange: 'Ages 15–18', description: 'The peak of our youth baseball program, emphasizing high-level strategy, leadership, and physical conditioning for adult league or collegiate play.', icon: '🏆' },
+  { id: '13u', name: '13U A Baseball', ageRange: 'Ages 11–13', description: 'Players develop strategic thinking and higher-level baseball skills as they prepare for senior play.', icon: '⚾' },
+  { id: '15u', name: '15U A Baseball', ageRange: 'Ages 13–15', description: 'Focused on advanced skill development and tactical gameplay on a full-size diamond, preparing players for high-school level baseball competition.', icon: '⚾' },
+  { id: '18u', name: '18U A Baseball', ageRange: 'Ages 15–18', description: 'The peak of our youth baseball program, emphasizing high-level strategy, leadership, and physical conditioning for adult league or collegiate play.', icon: '⚾' },
   { id: 'softball-15u', name: '15U Softball', ageRange: 'Ages 13–15', description: 'Our 15U Softball program focuses on fastpitch fundamentals, team dynamics, and competitive skill-building in a supportive environment.', icon: '🥎' },
   { id: 'softball-18u', name: '18U Softball', ageRange: 'Ages 15–18', description: 'The 18U Softball division offers high-level competition for senior players, emphasizing advanced techniques and preparation for regional tournaments.', icon: '🥎' },
 ]
@@ -59,7 +59,7 @@ function fbPostToNewsItem(post) {
     title,
     date: formatFBDate(post.created_time),
     excerpt,
-    href: `https://www.facebook.com/${import.meta.env.VITE_FB_PAGE_ID}/posts/${post.id.split('_')[1]}`,
+    href: `${FB_PAGE_URL}/posts/${post.id.split('_')[1]}`,
     external: true,
     image: post.full_picture || null,
   }
@@ -72,20 +72,16 @@ export default function Home() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const PAGE_ID = import.meta.env.VITE_FB_PAGE_ID
-        const TOKEN = import.meta.env.VITE_FB_ACCESS_TOKEN
-        if (!PAGE_ID || !TOKEN) return
-
-        const res = await fetch(
-          `https://graph.facebook.com/v19.0/${PAGE_ID}/posts?fields=id,message,story,created_time,full_picture&limit=3&access_token=${TOKEN}`
-        )
+        // Netlify function use karo — server side token
+        const res = await fetch('/.netlify/functions/fb-posts')
+        if (!res.ok) return
         const data = await res.json()
         if (data.data && data.data.length > 0) {
-          setNewsItems(data.data.map(fbPostToNewsItem))
+          setNewsItems(data.data.slice(0, 3).map(fbPostToNewsItem))
           setLiveNews(true)
         }
       } catch (err) {
-        // Fallback news use karo — koi gal nahi
+        // Fallback news use karo
       }
     }
     fetchNews()
@@ -108,10 +104,7 @@ export default function Home() {
               <p className="text-blue-200 font-body text-base leading-relaxed mb-8">
                 We want to build a space of equal opportunity for every child that steps onto the field by offering development programs that will teach them the fundamentals of the game and develop their playing skills.
               </p>
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-2 bg-accent-600 hover:bg-accent-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all hover:shadow-lg hover:shadow-accent-600/30"
-              >
+              <Link to="/about" className="inline-flex items-center gap-2 bg-accent-600 hover:bg-accent-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all hover:shadow-lg hover:shadow-accent-600/30">
                 Learn More <ChevronRight size={16} />
               </Link>
             </div>
@@ -168,16 +161,10 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {divisions.map((div) => (
-              <Link
-                key={div.id}
-                to={`/divisions#${div.id}`}
-                className="bg-primary-800 border border-primary-600 hover:border-accent-500 rounded-xl p-6 card-hover group block"
-              >
+              <Link key={div.id} to={`/divisions#${div.id}`} className="bg-primary-800 border border-primary-600 hover:border-accent-500 rounded-xl p-6 card-hover group block">
                 <div className="flex items-start justify-between mb-4">
                   <div className="text-3xl">{div.icon}</div>
-                  <span className="text-xs font-display font-semibold text-blue-200 bg-primary-700 px-2.5 py-1 rounded uppercase tracking-wide">
-                    {div.ageRange}
-                  </span>
+                  <span className="text-xs font-display font-semibold text-blue-200 bg-primary-700 px-2.5 py-1 rounded uppercase tracking-wide">{div.ageRange}</span>
                 </div>
                 <h3 className="font-display font-bold text-white text-xl tracking-wide mb-2 group-hover:text-accent-400 transition-colors">{div.name}</h3>
                 <p className="text-blue-200 text-sm font-body leading-relaxed mb-4">{div.description}</p>
@@ -248,27 +235,19 @@ export default function Home() {
             Stay up to date with the latest news, announcements, and community updates on our Facebook page and group.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href={`https://www.facebook.com/${import.meta.env.VITE_FB_PAGE_ID}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all hover:shadow-lg"
-            >
+            <a href={FB_PAGE_URL} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all hover:shadow-lg">
               <Facebook size={16} /> Follow Our Page
             </a>
-            <a
-              href="https://www.facebook.com/groups/162547079983081/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-600 border border-primary-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all"
-            >
+            <a href="https://www.facebook.com/groups/162547079983081/" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-600 border border-primary-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all">
               <Facebook size={16} /> Join Facebook Group
             </a>
           </div>
         </div>
       </section>
 
-      {/* Register CTA — dono buttons */}
+      {/* Register CTA */}
       <section className="py-20 hero-gradient">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="inline-block bg-accent-600 text-white font-display text-xs tracking-[0.2em] px-4 py-2 mb-6 uppercase">
@@ -279,20 +258,12 @@ export default function Home() {
             Secure your spot in the 2026 season. Registration is now open for baseball and softball divisions.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href={BASEBALL_REG}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-accent-600 hover:bg-accent-500 text-white font-display font-bold text-base px-10 py-5 uppercase tracking-wider transition-all hover:shadow-2xl hover:shadow-accent-600/40"
-            >
+            <a href={BASEBALL_REG} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-accent-600 hover:bg-accent-500 text-white font-display font-bold text-base px-10 py-5 uppercase tracking-wider transition-all hover:shadow-2xl hover:shadow-accent-600/40">
               ⚾ Register — Baseball
             </a>
-            <a
-              href={SOFTBALL_REG}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-600 border-2 border-accent-500 text-white font-display font-bold text-base px-10 py-5 uppercase tracking-wider transition-all hover:shadow-2xl"
-            >
+            <a href={SOFTBALL_REG} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-600 border-2 border-accent-500 text-white font-display font-bold text-base px-10 py-5 uppercase tracking-wider transition-all hover:shadow-2xl">
               🥎 Register — Softball
             </a>
           </div>
