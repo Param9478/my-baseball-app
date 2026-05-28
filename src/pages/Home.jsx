@@ -35,14 +35,13 @@ const fallbackNews = [
 ]
 
 const divisions = [
-  { id: 'rally-caps', name: 'Rally Caps', ageRange: 'Ages 5–6', description: 'Rally Caps focuses on introducing the core skills of batting, fielding, and teamwork. Games are structured for fun and learning at this foundational stage.', icon: '⚾' },
-  { id: 'rookie', name: 'Rookie', ageRange: 'Ages 7–8', description: 'Rookie players begin to develop real baseball skills in a structured environment. Focus is on learning positions, base running, and the rules of the game.', icon: '⚾' },
+  { id: '5u-7u', name: '5U + 7U', ageRange: 'Ages 5–6', description: '5U focuses on introducing the core skills of batting, fielding, and teamwork. Practice + Games are structured for fun and learning at this foundational stage.', icon: '⚾' },
+  { id: '9u', name: '9U Travel / 9U Community', ageRange: 'Ages 7–8', description: '9U players begin to develop real baseball skills in a structured environment. Focus is on learning positions, base running, and the rules of the game.', icon: '⚾' },
   { id: '11u', name: '11U A Baseball', ageRange: 'Ages 9–11', description: 'Players in the 11U division compete in organized games with full rules. Emphasis on skill development, sportsmanship, and competitive play.', icon: '⚾' },
   { id: '13u', name: '13U A Baseball', ageRange: 'Ages 11–13', description: 'Players develop strategic thinking and higher-level baseball skills as they prepare for senior play.', icon: '⚾' },
   { id: '15u', name: '15U A Baseball', ageRange: 'Ages 13–15', description: 'Focused on advanced skill development and tactical gameplay on a full-size diamond, preparing players for high-school level baseball competition.', icon: '⚾' },
   { id: '18u', name: '18U A Baseball', ageRange: 'Ages 15–18', description: 'The peak of our youth baseball program, emphasizing high-level strategy, leadership, and physical conditioning for adult league or collegiate play.', icon: '⚾' },
-  { id: 'softball-15u', name: '15U Softball', ageRange: 'Ages 13–15', description: 'Our 15U Softball program focuses on fastpitch fundamentals, team dynamics, and competitive skill-building in a supportive environment.', icon: '🥎' },
-  { id: 'softball-18u', name: '18U Softball', ageRange: 'Ages 15–18', description: 'The 18U Softball division offers high-level competition for senior players, emphasizing advanced techniques and preparation for regional tournaments.', icon: '🥎' },
+  { id: 'softball-15u/18u', name: '15U / 18U Softball', ageRange: 'Ages 15–18', description: 'The 18U Softball division offers high-level competition for players, emphasizing advanced techniques and preparation for regional tournaments.', icon: '🥎' },
 ]
 
 function formatFBDate(dateString) {
@@ -97,9 +96,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <SectionHeader tag="The HPMBA" title="We believe in a fun and healthy environment for both players and coaches." />
+              <SectionHeader tag="HPMBA" title="We believe in a fun and healthy environment for both players and coaches." />
               <p className="text-blue-200 font-body text-base leading-relaxed mb-6">
-                High Prairie Minor Baseball is a community-based program with dedicated volunteers that believe in creating a safe and active environment that promotes exercise, teamwork, and sportsmanship.
+                High Prairie Minor Baseball is a community-based program with dedicated volunteers that believe in creating a safe and active environment that promotes exercise, competitiveness, and sportsmanship.
               </p>
               <p className="text-blue-200 font-body text-base leading-relaxed mb-8">
                 We want to build a space of equal opportunity for every child that steps onto the field by offering development programs that will teach them the fundamentals of the game and develop their playing skills.
@@ -133,12 +132,12 @@ export default function Home() {
           style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, #dc2626 0%, transparent 60%), radial-gradient(circle at 70% 50%, #1d4ed8 0%, transparent 60%)' }}
         />
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <SectionHeader tag="Off-Season" title="Development Camps" center />
+          <SectionHeader tag="Off-Season" title="Season Play" center />
           <div className="grid md:grid-cols-3 gap-6 mt-8">
             {[
-              { name: 'Pre-Season', desc: 'Get ready for the season with focused training on fundamentals and team chemistry before opening day.', href: '/development#pre-season', icon: '⚾' },
-              { name: 'Fall Camp', desc: 'Continue developing your game after the season ends with specialized fall training sessions.', href: '/development#fall-camp', icon: '🍂' },
-              { name: 'Winter Camp', desc: 'Stay sharp all winter long with indoor training camps designed to improve your skills.', href: '/development#winter-camp', icon: '❄️' },
+              { name: 'Spring Training', desc: `Weather it's indoors or outdoors, HPMB will help get your child ready intime for the new season.`, icon: '⚾' },
+              { name: 'Community Ball', desc: `From 5U to 9U HPMB allows for your child skills to develop without the hassle of much travel.`, href: '/development#fall-camp', icon: '⚾' },
+              { name: 'AA & League Play', desc: `HPMB offers both AA Baseball and or A Baseball through Baseball Alberta and the Montney League.`, href: '/development#winter-camp', icon: '⚾' },
             ].map((camp) => (
               <Link key={camp.name} to={camp.href} className="group bg-primary-900 border border-primary-600 hover:border-accent-500 rounded-xl p-8 card-hover text-center block">
                 <div className="text-4xl mb-4">{camp.icon}</div>
@@ -191,7 +190,7 @@ export default function Home() {
             High Prairie Minor Baseball is always looking for fresh faces interested in getting involved. There are a variety of positions available every year.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {['Coaching Applications', 'Umpire Clinics', 'Equipment'].map((item) => (
+            {['Coaching Applications', 'Umpire Clinics', 'Join Our Board'].map((item) => (
               <div key={item} className="bg-white/20 backdrop-blur-sm border border-white/30 text-white font-body font-semibold text-sm px-5 py-2.5 rounded-full">{item}</div>
             ))}
           </div>

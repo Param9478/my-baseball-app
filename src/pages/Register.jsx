@@ -41,11 +41,11 @@ const faqs = [
   },
   {
     q: 'What if my child has never played before?',
-    a: 'No experience needed! Our younger divisions (Rally Caps, Rookie) are specifically designed for beginners. All skill levels are welcome.',
+    a: 'No experience needed! Our younger divisions (5U, 7U, 9U) are specifically designed for beginners. All skill levels are welcome.',
   },
   {
     q: 'Are there tryouts?',
-    a: 'Younger divisions (Rally Caps, Rookie) do not have tryouts. The 11U and above divisions may hold tryouts — details will be communicated after registration.',
+    a: 'Younger divisions (5U, 7U, 9U) do not have tryouts. The 11U and above divisions may hold tryouts — details will be communicated after registration.',
   },
   {
     q: 'Can I register more than one child?',
@@ -70,7 +70,7 @@ export default function Register() {
             Register Now
           </h1>
           <p className="text-blue-200 font-body text-lg max-w-2xl mb-8">
-            Join the High Prairie & District Minor Ball Association for the 2026 season. Registration is open for all divisions — from Rally Caps to 18U.
+            Join the High Prairie & District Minor Ball Association for the 2026 season. Registration is open for all divisions — from 5U to 18U.
           </p>
           {/* Hero — dono buttons */}
           <div className="flex flex-wrap gap-4">

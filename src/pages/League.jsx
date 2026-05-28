@@ -18,7 +18,7 @@ export default function League() {
             Our League
           </h1>
           <p className="text-blue-200 font-body text-lg max-w-2xl">
-            GPMBA is always looking for coaches, umpires, and volunteers to help grow our community.
+            HPMBA is always looking for coaches, umpires, and volunteers to help grow our community. HPMBA teams play under Baseball Alberta rules, competing in competitive AA and Montney 'A' Baseball leagues across the Alberta Peace Country.
           </p>
         </div>
       </section>
@@ -46,7 +46,7 @@ export default function League() {
                 If you have any interest and would like more information, please send us an email. We provide all the necessary support and resources to help you succeed on the field.
               </p>
               <a
-                href="mailto:execdirector@gpmba.ca"
+                href="mailto:hpminorball@gmail.com"
                 className="inline-flex items-center gap-2 bg-accent-600 hover:bg-accent-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all hover:shadow-lg"
               >
                 Apply Now <ChevronRight size={16} />
@@ -111,7 +111,7 @@ export default function League() {
                 We are looking for dedicated older youth and adults to join our officiating team. All umpires are compensated for their time, and we provide clinics to help you get certified and confident on the field.
               </p>
               <a
-                href="mailto:execdirector@gpmba.ca"
+                href="mailto:hpminorball@gmail.com"
                 className="inline-flex items-center gap-2 border-2 border-blue-500 hover:bg-blue-500 text-blue-300 hover:text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all"
               >
                 Learn More <ChevronRight size={16} />
@@ -119,7 +119,7 @@ export default function League() {
             </div>
           </div>
 
-          {/* Game Nights */}
+          {/* Showcase Weekends */}
           <div id="game-nights" className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="flex items-center gap-3 mb-3">
@@ -128,15 +128,15 @@ export default function League() {
                 </div>
                 <span className="font-display text-accent-400 text-xs tracking-[0.25em] uppercase">Community</span>
               </div>
-              <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-wide mb-4">Game Nights</h2>
+              <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-wide mb-4">Showcase Weekends</h2>
               <p className="text-blue-200 font-body text-base leading-relaxed mb-4">
-                Come out and support your local teams at our game nights throughout the season. Game nights are a great opportunity to connect with the community, cheer on the players, and enjoy the sport we all love.
+                Come out and support your local teams at our showcase weekends throughout the season. Showcase Weekends are a great opportunity to connect with the community, cheer on the players, and enjoy the sport we all love.
               </p>
               <p className="text-blue-200 font-body text-base leading-relaxed mb-6">
                 Check our news and social media pages for upcoming game schedules and special events.
               </p>
               <a
-                href="https://www.facebook.com/groups/162547079983081/"
+                href="https://www.facebook.com/1094783807050470"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-accent-600 hover:bg-accent-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all hover:shadow-lg"

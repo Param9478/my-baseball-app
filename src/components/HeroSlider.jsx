@@ -121,19 +121,7 @@ export default function HeroSlider() {
         ))}
 
         {/* Stats bar */}
-        <div className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl">
-          {[
-            { num: '9+', label: 'Divisions' },
-            { num: '500+', label: 'Players' },
-            { num: '30+', label: 'Years' },
-            { num: '100%', label: 'Community' },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="font-display font-bold text-3xl text-accent-400">{stat.num}</div>
-              <div className="font-body text-xs text-blue-300 uppercase tracking-widest mt-1">{stat.label}</div>
-            </div>
-          ))}
-        </div>
+        
       </div>
 
       {/* Slider controls */}

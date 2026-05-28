@@ -6,18 +6,18 @@ const SOFTBALL_REG = 'https://www.rampregistrations.com/login?v3=d1c7bce4'
 
 const divisions = [
   {
-    id: 'rally-caps',
-    name: 'Rally Caps',
+    id: '5u-7u',
+    name: '5U + 7U',
     ageRange: 'Ages 5–6',
-    description: 'Rally Caps focuses on introducing the core skills of batting, fielding, and teamwork. Games are structured for fun and learning at this foundational stage.',
+    description: '5U focuses on introducing the core skills of batting, fielding, and teamwork. Practice + Games are structured for fun and learning at this foundational stage.',
     icon: '⚾',
     type: 'baseball',
   },
   {
-    id: 'rookie',
-    name: 'Rookie',
+    id: '9u',
+    name: '9U Travel / 9U Community',
     ageRange: 'Ages 7–8',
-    description: 'Rookie players begin to develop real baseball skills in a structured environment. Focus is on learning positions, base running, and the rules of the game.',
+    description: '9U players begin to develop real baseball skills in a structured environment. Focus is on learning positions, base running, and the rules of the game.',
     icon: '⚾',
     type: 'baseball',
   },
@@ -53,17 +53,10 @@ const divisions = [
     icon: '⚾',
     type: 'baseball',
   },
-  {
-    id: 'softball-15u',
-    name: '15U Softball',
-    ageRange: 'Ages 13–15',
-    description: 'Our 15U Softball program focuses on fastpitch fundamentals, team dynamics, and competitive skill-building in a supportive environment.',
-    icon: '🥎',
-    type: 'softball',
-  },
+ 
   {
     id: 'softball-18u',
-    name: '18U Softball',
+    name: '15U / 18U Softball',
     ageRange: 'Ages 15–18',
     description: 'The 18U Softball division offers high-level competition for senior players, emphasizing advanced techniques and preparation for regional tournaments.',
     icon: '🥎',
@@ -85,7 +78,7 @@ export default function Divisions() {
             Divisions
           </h1>
           <p className="text-blue-200 font-body text-lg max-w-2xl mb-8">
-            From our youngest Rally Caps to our elite 18U teams, there's a place for every player in the HPMBA.
+            From our youngest 5U  to our elite 18U teams, there's a place for every player in the HPMBA.
           </p>
           {/* Quick register buttons in hero */}
           <div className="flex flex-wrap gap-4">

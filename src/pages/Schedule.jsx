@@ -94,11 +94,11 @@ export default function Schedule() {
                         Game Schedule
                     </h1>
                     <p className="text-blue-200 font-body text-lg max-w-2xl mb-8">
-                        High Prairie competes in 3 rounds of Montney League tournament play, leading to the Championship Finals in June.
+                        Full schedule for all HPMBA divisions. Home games played at High Prairie ball diamonds. Check back regularly for updates or visit our Facebook page for the continues updates.
                     </p>
-                    <a href={SPORDLE_URL} target="_blank" rel="noopener noreferrer"
+                    <a href={FB_PAGE_URL} target="_blank" rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-display font-semibold text-sm px-6 py-3 uppercase tracking-wider transition-all backdrop-blur-sm rounded">
-                        <ExternalLink size={15} /> Live Scores & Standings on Spordle
+                        <ExternalLink size={15} /> Facebook Page
                     </a>
                 </div>
             </section>
@@ -150,8 +150,8 @@ export default function Schedule() {
                                                         {venue.teams.map((team) => (
                                                             <span key={team}
                                                                 className={`text-xs font-body px-3 py-1.5 rounded-lg border transition-colors ${team === 'High Prairie'
-                                                                        ? 'bg-accent-600/20 border-accent-500/60 text-accent-300 font-semibold'
-                                                                        : 'bg-primary-700/60 border-primary-600 text-blue-200'
+                                                                    ? 'bg-accent-600/20 border-accent-500/60 text-accent-300 font-semibold'
+                                                                    : 'bg-primary-700/60 border-primary-600 text-blue-200'
                                                                     }`}>
                                                                 {team === 'High Prairie' ? '⚾ ' + team : team}
                                                             </span>
@@ -207,29 +207,7 @@ export default function Schedule() {
             </section>
 
             {/* Bottom CTA */}
-            <section className="py-16 bg-primary-800 border-t border-primary-700">
-                <div className="max-w-3xl mx-auto px-6 text-center">
-                    <Trophy size={36} className="text-accent-400 mx-auto mb-4" />
-                    <h2 className="font-display font-bold text-2xl text-white mb-3">Live Scores & Standings</h2>
-                    <p className="text-blue-200 font-body text-base mb-6">
-                        Follow along on Spordle for live updates. Join our Facebook community for rainout notifications and announcements.
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-4">
-                        <a href={SPORDLE_URL} target="_blank" rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-accent-600 hover:bg-accent-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all hover:shadow-lg">
-                            <ExternalLink size={15} /> View on Spordle
-                        </a>
-                        <a href={FB_PAGE_URL} target="_blank" rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all">
-                            <Facebook size={15} /> Follow Our Page
-                        </a>
-                        <a href={FB_GROUP_URL} target="_blank" rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-600 border border-primary-500 text-white font-display font-semibold text-sm px-7 py-3.5 uppercase tracking-wider transition-all">
-                            <Facebook size={15} /> Facebook Group
-                        </a>
-                    </div>
-                </div>
-            </section>
+            
         </div>
     )
 }

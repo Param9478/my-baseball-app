@@ -17,14 +17,13 @@ const organization = [
 ]
 
 const divisions = [
-  { label: 'Rally Caps', href: '/divisions#rally-caps' },
-  { label: 'Rookie', href: '/divisions#rookie' },
+  { label: '5U + 7U', href: '/divisions#5u-7u' },
+  { label: '9U', href: '/divisions#9u' },
   { label: '11U Baseball', href: '/divisions#11u' },
   { label: '13U Baseball', href: '/divisions#13u' },
   { label: '15U Baseball', href: '/divisions#15u' },
   { label: '18U Baseball', href: '/divisions#18u' },
-  { label: '15U Softball', href: '/divisions#softball-15u' },
-  { label: '18U Softball', href: '/divisions#softball-18u' },
+  { label: '15U / 18U Softball', href: '/divisions#softball18u' },
 ]
 
 const league = [
