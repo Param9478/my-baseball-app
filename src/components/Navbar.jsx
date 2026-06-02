@@ -103,7 +103,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full">
       {/* Top bar */}
-      <div className="bg-accent-600 text-white text-xs py-1.5 px-4 hidden md:flex justify-between items-center">
+      {/* <div className="bg-accent-600 text-white text-xs py-1.5 px-4 hidden md:flex justify-between items-center">
         <div className="flex items-center gap-4 max-w-7xl mx-auto w-full">
           <a href="mailto:hpminorball@gmail.com" className="flex items-center gap-1 hover:text-accent-100 transition-colors">
             <Mail size={12} />
@@ -114,7 +114,7 @@ export default function Navbar() {
             <span>+1 780-536-7803</span>
           </a>
         </div>
-      </div>
+      </div> */}
 
       <nav
         className={`transition-all duration-300 ${scrolled
