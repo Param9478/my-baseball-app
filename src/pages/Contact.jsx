@@ -1,16 +1,41 @@
 import { useState } from 'react'
 import SectionHeader from '../components/SectionHeader'
-import { Mail, MapPin, Facebook, Send } from 'lucide-react'
+import { Mail, MapPin, Facebook, Send, RotateCcw } from 'lucide-react'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+  const validate = () => {
+    const newErrors = {}
+    if (!form.name.trim()) newErrors.name = 'Name is required'
+    if (!form.email.trim()) {
+      newErrors.email = 'Email is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      newErrors.email = 'Enter a valid email address'
+    }
+    if (!form.subject.trim()) newErrors.subject = 'Subject is required'
+    if (!form.message.trim()) newErrors.message = 'Message is required'
+    return newErrors
+  }
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+    if (errors[e.target.name]) {
+      setErrors({ ...errors, [e.target.name]: '' })
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const validationErrors = validate()
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors)
+      return
+    }
+
     setLoading(true)
 
     const encode = (data) =>
@@ -31,6 +56,16 @@ export default function Contact() {
       setLoading(false)
     }
   }
+
+  const handleReset = () => {
+    setForm({ name: '', email: '', subject: '', message: '' })
+    setErrors({})
+    setSubmitted(false)
+  }
+
+  const inputClass = (field) =>
+    `w-full bg-primary-900 border ${errors[field] ? 'border-red-500 focus:border-red-400' : 'border-primary-600 focus:border-accent-500'
+    } text-white font-body text-sm px-4 py-3 rounded-lg outline-none transition-colors placeholder-primary-500`
 
   return (
     <div className="pt-28">
@@ -118,11 +153,19 @@ export default function Contact() {
             <div className="bg-primary-800 border border-primary-600 rounded-2xl p-8">
               {submitted ? (
                 <div className="text-center py-10">
-                  <div className="text-5xl mb-4">✅</div>
+                  <div className="w-16 h-16 bg-accent-600/20 rounded-full flex items-center justify-center mx-auto mb-5">
+                    <Send size={28} className="text-accent-400" />
+                  </div>
                   <h3 className="font-display font-bold text-white text-2xl mb-2">Message Sent!</h3>
-                  <p className="text-blue-200 font-body text-sm">
+                  <p className="text-blue-200 font-body text-sm mb-8">
                     Thanks for reaching out. We'll get back to you as soon as possible.
                   </p>
+                  <button
+                    onClick={handleReset}
+                    className="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-600 border border-primary-500 hover:border-primary-400 text-white font-display font-semibold text-xs px-6 py-3 uppercase tracking-wider transition-all"
+                  >
+                    <RotateCcw size={14} /> Send Another Message
+                  </button>
                 </div>
               ) : (
                 <>
@@ -132,49 +175,61 @@ export default function Contact() {
                   <div className="space-y-4">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block font-body text-xs text-blue-300 uppercase tracking-widest mb-1.5">Name</label>
+                        <label className="block font-body text-xs text-blue-300 uppercase tracking-widest mb-1.5">
+                          Name <span className="text-accent-400">*</span>
+                        </label>
                         <input
                           type="text"
                           name="name"
                           value={form.name}
                           onChange={handleChange}
-                          className="w-full bg-primary-900 border border-primary-600 focus:border-accent-500 text-white font-body text-sm px-4 py-3 rounded-lg outline-none transition-colors placeholder-primary-500"
+                          className={inputClass('name')}
                           placeholder="Your full name"
                         />
+                        {errors.name && <p className="text-red-400 font-body text-xs mt-1">{errors.name}</p>}
                       </div>
                       <div>
-                        <label className="block font-body text-xs text-blue-300 uppercase tracking-widest mb-1.5">Email</label>
+                        <label className="block font-body text-xs text-blue-300 uppercase tracking-widest mb-1.5">
+                          Email <span className="text-accent-400">*</span>
+                        </label>
                         <input
                           type="email"
                           name="email"
                           value={form.email}
                           onChange={handleChange}
-                          className="w-full bg-primary-900 border border-primary-600 focus:border-accent-500 text-white font-body text-sm px-4 py-3 rounded-lg outline-none transition-colors placeholder-primary-500"
+                          className={inputClass('email')}
                           placeholder="your@email.com"
                         />
+                        {errors.email && <p className="text-red-400 font-body text-xs mt-1">{errors.email}</p>}
                       </div>
                     </div>
                     <div>
-                      <label className="block font-body text-xs text-blue-300 uppercase tracking-widest mb-1.5">Subject</label>
+                      <label className="block font-body text-xs text-blue-300 uppercase tracking-widest mb-1.5">
+                        Subject <span className="text-accent-400">*</span>
+                      </label>
                       <input
                         type="text"
                         name="subject"
                         value={form.subject}
                         onChange={handleChange}
-                        className="w-full bg-primary-900 border border-primary-600 focus:border-accent-500 text-white font-body text-sm px-4 py-3 rounded-lg outline-none transition-colors placeholder-primary-500"
+                        className={inputClass('subject')}
                         placeholder="What's this about?"
                       />
+                      {errors.subject && <p className="text-red-400 font-body text-xs mt-1">{errors.subject}</p>}
                     </div>
                     <div>
-                      <label className="block font-body text-xs text-blue-300 uppercase tracking-widest mb-1.5">Message</label>
+                      <label className="block font-body text-xs text-blue-300 uppercase tracking-widest mb-1.5">
+                        Message <span className="text-accent-400">*</span>
+                      </label>
                       <textarea
                         name="message"
                         value={form.message}
                         onChange={handleChange}
                         rows={5}
-                        className="w-full bg-primary-900 border border-primary-600 focus:border-accent-500 text-white font-body text-sm px-4 py-3 rounded-lg outline-none transition-colors placeholder-primary-500 resize-none"
+                        className={inputClass('message') + ' resize-none'}
                         placeholder="Your message here..."
                       />
+                      {errors.message && <p className="text-red-400 font-body text-xs mt-1">{errors.message}</p>}
                     </div>
                     <button
                       onClick={handleSubmit}
