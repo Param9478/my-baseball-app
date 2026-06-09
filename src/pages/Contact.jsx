@@ -1,16 +1,35 @@
 import { useState } from 'react'
 import SectionHeader from '../components/SectionHeader'
-import { Mail, Phone, MapPin, Facebook, Send } from 'lucide-react'
+import { Mail, MapPin, Facebook, Send } from 'lucide-react'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setLoading(true)
+
+    const encode = (data) =>
+      Object.keys(data)
+        .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+        .join('&')
+
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({ 'form-name': 'contact', ...form }),
+      })
+      setSubmitted(true)
+    } catch (err) {
+      alert('Something went wrong. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -159,9 +178,10 @@ export default function Contact() {
                     </div>
                     <button
                       onClick={handleSubmit}
-                      className="w-full flex items-center justify-center gap-2 bg-accent-600 hover:bg-accent-500 text-white font-display font-semibold text-sm px-6 py-4 uppercase tracking-wider transition-all hover:shadow-lg hover:shadow-accent-600/30"
+                      disabled={loading}
+                      className="w-full flex items-center justify-center gap-2 bg-accent-600 hover:bg-accent-500 disabled:opacity-60 text-white font-display font-semibold text-sm px-6 py-4 uppercase tracking-wider transition-all hover:shadow-lg hover:shadow-accent-600/30"
                     >
-                      <Send size={16} /> Send Message
+                      <Send size={16} /> {loading ? 'Sending...' : 'Send Message'}
                     </button>
                   </div>
                 </>
