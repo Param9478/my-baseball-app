@@ -63,7 +63,7 @@ export default function Footer() {
           {/* Social */}
           <div className="flex flex-wrap gap-3 mb-6">
             <a
-              href={`https://www.facebook.com/${import.meta.env.VITE_FB_PAGE_ID}`}
+              href={`https://www.facebook.com/profile.php?id=61560489947569`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-body text-xs px-3 py-2 rounded-lg transition-colors"

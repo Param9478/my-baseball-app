@@ -130,7 +130,7 @@ export default function Contact() {
                 <h4 className="font-display font-semibold text-white text-sm tracking-widest uppercase mb-4">Follow Us</h4>
                 <div className="flex flex-wrap gap-3">
                   <a
-                    href={`https://www.facebook.com/${import.meta.env.VITE_FB_PAGE_ID}`}
+                    href={`https://www.facebook.com/profile.php?id=61560489947569`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-body text-sm px-4 py-2.5 rounded-lg transition-colors"
